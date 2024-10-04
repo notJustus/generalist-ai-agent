@@ -1,0 +1,14 @@
+hyperparamters:
+  n_generations: 5
+  pop_size: 5
+  tour_size: 2
+  muatation_p: 0.2
+  n_parents: 2
+
+env:
+  multiplemode: "yes"
+  randomini: "yes"
+  visuals: false
+  n_hidden_neurons: 10
+  path: "test01"
+  n_runs: 2
