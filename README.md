@@ -1,16 +1,26 @@
 # Evolutionary Computing
 
+## Setting up Environment
+
+´conda env create -f environment.yml´
+
+´conda activate evoman´
+
+> This is gonna automatically install all dependencies if you have conda installed
+
+## Framework setup
+
+In the /configs folder you can add your own configurations of the framework by creating new .yaml files.
+
+Currently, running ea.py will require you to specify two arguments: basically the two enemy groups.
+Then it will run the experiment for eache enemy group n_runs times (specified in the config file).
+
 ## Setting up Git
 
 1. **Clone** the repo locally: `git clone https://github.com/notJustus/ml-pneumonia-classification`
 
 2. Create a feature branch and checkout to that branch: `git checkout -b <feature-[name]>`
 
-3. Create a folder in the root of the working directory called `/data` 
-
-4. Add all the xray data files in this folder
-
-Run jupyter notebook with: `jupyter notebook`
 
 ## After working on the project
 

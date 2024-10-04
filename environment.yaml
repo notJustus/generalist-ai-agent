@@ -1,0 +1,7 @@
+name: evoman  # Name of the conda environment
+channels:
+  - defaults
+dependencies:
+  - numpy
+  - pandas
+  - pyyaml
