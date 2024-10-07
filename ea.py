@@ -225,14 +225,14 @@ def init_params(args):
     os.environ["SDL_VIDEODRIVER"] = "dummy"
 
     # Retrieve config
-    with open("configs/debug.yaml", "r") as file:
+    with open(args.config, "r") as file:
         config = yaml.safe_load(file)
 
     base_path = mkdir(name=config["env"]["path"], base="results")
     
     envs = [
         Environment(experiment_name=base_path,
-                    enemies=args.enemy_group_1,
+                    enemies=config["env"]["enemy_group_1"],
                     multiplemode=config["env"]["multiplemode"],
                     playermode="ai",
                     player_controller=player_controller(config["env"]["n_hidden_neurons"]),
@@ -243,7 +243,7 @@ def init_params(args):
                     visuals=config["env"]["visuals"]),
         
         Environment(experiment_name=base_path,
-                    enemies=args.enemy_group_2,
+                    enemies=config["env"]["enemy_group_2"],
                     multiplemode=config["env"]["multiplemode"],
                     playermode="ai",
                     player_controller=player_controller(config["env"]["n_hidden_neurons"]),
@@ -253,16 +253,12 @@ def init_params(args):
                     randomini=config["env"]["randomini"],
                     visuals=config["env"]["visuals"])
     ]
-    #base_path = os.path.join("results", config["env"]["path"])
 
-    # To-DO
     for enemy_group, env in enumerate(envs):
-        #env_path = os.path.join(base_path, f"enemy_group_{enemy_group}")
         env_path = mkdir(name=f"enemy_group_{enemy_group}", base=base_path)
         n_vars = (env.get_num_sensors() + 1) * config["env"]["n_hidden_neurons"] + (config["env"]["n_hidden_neurons"] + 1) * 5
         
         for run in range(config["env"]["n_runs"]):
-            #run_path = os.path.join(env_path, f"run_{run}")
             run_path = mkdir(name=f"run_{run}", base=env_path)
 
             run_experiment(env, config["hyperparamters"], run_path, n_vars)
@@ -270,8 +266,7 @@ def init_params(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--enemy_group_1", nargs='*', type=int, help="Enemy number: 1 to 8")
-    parser.add_argument("--enemy_group_2", nargs='*', type=int, help="Enemy number: 1 to 8")
+    parser.add_argument("--config", type=str, required=True, help="Path to the config file")
 
     args = parser.parse_args()
 

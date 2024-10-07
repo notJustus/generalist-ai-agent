@@ -6,6 +6,8 @@ hyperparamters:
   n_parents: 2
 
 env:
+  enemy_group_1: [1, 2, 3]
+  enemy_group_2: [4, 5, 6]
   multiplemode: "yes"
   randomini: "yes"
   visuals: false
